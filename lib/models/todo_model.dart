@@ -5,11 +5,7 @@ class Todo {
   String title;
   bool completed;
 
-  Todo({
-    this.id,
-    required this.title,
-    required this.completed,
-  });
+  Todo({this.id, required this.title, required this.completed});
 
   // Factory constructor to instantiate object from json format
   factory Todo.fromJson(Map<String, dynamic> json) {
@@ -25,10 +21,7 @@ class Todo {
     return data.map<Todo>((dynamic d) => Todo.fromJson(d)).toList();
   }
 
-  Map<String, dynamic> toJson(Todo todo) {
-    return {
-      'title': todo.title,
-      'completed': todo.completed,
-    };
+  Map<String, dynamic> toJson() {
+    return {'title': title, 'completed': completed};
   }
 }

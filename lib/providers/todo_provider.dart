@@ -1,39 +1,51 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../models/todo_model.dart';
+import '../../../../models/todo_model.dart';
+import '../api/firebase_todo_api.dart';
 
 class TodoListProvider with ChangeNotifier {
-  late Stream<QuerySnapshot> _todosStream;
+late FirebaseTodoAPI firebaseService;
+late Stream<QuerySnapshot> _todosStream;
 
-  TodoListProvider() {
-    fetchTodos();
-  }
+TodoListProvider() {
+  firebaseService = FirebaseTodoAPI();
+  fetchTodos();
+}
 
-  // getter
-  Stream<QuerySnapshot> get todo => _todosStream;
+Stream<QuerySnapshot> get todos => _todosStream;
 
-  // TODO: get all todo items from Firestore
-  void fetchTodos() {
-    notifyListeners();
-  }
+fetchTodos() {
+  _todosStream = firebaseService.getAllTodos();
+  notifyListeners();
+}
 
   // TODO: add todo item and store it in Firestore
-  void addTodo(Todo item) {
+  void addTodo(Todo item) async {
+    String message = await firebaseService.addTodo(item.toJson());
+    print(message);
     notifyListeners();
   }
 
   // TODO: edit a todo item and update it in Firestore
-  void editTodo(Todo item, String newTitle) {
+  Future<void> editTodo(String id, String newTitle) async {
+    String message = await firebaseService.editTodo(id, {'title': newTitle});
+    print(message);
     notifyListeners();
   }
 
-  // TODO: delete a todo item and update it in Firestore
-  void deleteTodo(Todo item) {
+  // delete Todo
+  Future<void> deleteTodo(String id) async {
+    String message = await firebaseService.deleteTodo(id);
+    print(message);
     notifyListeners();
   }
 
   // TODO: modify a todo status and update it in Firestore
-  void toggleStatus(Todo item, bool status) {
+  Future<void> toggleStatus(String id, bool status) async {
+    String message = await firebaseService.toggleStatus(id, status);
+    print(message);
     notifyListeners();
   }
+
+  
 }

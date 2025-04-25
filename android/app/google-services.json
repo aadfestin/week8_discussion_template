@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "205302643607",
+    "project_id": "cmsc23-todo-app-adfestin",
+    "storage_bucket": "cmsc23-todo-app-adfestin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205302643607:android:4c07b95eb5f232f889a2d2",
+        "android_client_info": {
+          "package_name": "com.example.week8datapersistence"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAbm8SQedot6h2O7EQdjfnn3pagXctNz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
